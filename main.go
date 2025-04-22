@@ -16,10 +16,7 @@ import (
 // @schemes http
 // main init the go allocator service.
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	_ = godotenv.Load()
 
 	conf := config.GetConfig()
 
@@ -59,7 +56,7 @@ func main() {
 		redisConnection,
 	)
 	app.Commands = cliCommands
-	err = app.Run(os.Args)
+	err := app.Run(os.Args)
 	if err != nil {
 		log.Fatalf("Failed to init CLI: %v", err)
 	}
