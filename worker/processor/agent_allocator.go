@@ -94,18 +94,13 @@ func (a *AgentAllocator) Run() {
 			log.Print("Warn all agent active is more than max assign\n")
 			log.Printf("Retrying allocate again after %d minutes...", a.config.AgentAllocatorWorkerSleep)
 			time.Sleep(time.Duration(a.config.AgentAllocatorWorkerSleep) * time.Minute)
+			log.Print("Allocator ready to serve again ...\n")
 
 			log.Print("Reset customer handle count all agent\n")
 
 			for _, aa := range allAgents {
 				aa.CustomerHandleCount = 0
 			}
-
-			// randomize agents order
-			rand.Seed(time.Now().UnixNano())
-			rand.Shuffle(len(allAgents), func(i, j int) {
-				allAgents[i], allAgents[j] = allAgents[j], allAgents[i]
-			})
 
 			agentID = allAgents[0].ID
 			agentIndex = 0
