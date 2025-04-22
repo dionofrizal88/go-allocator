@@ -70,6 +70,12 @@ func (a *AgentAllocator) Run() {
 
 		log.Printf("Processing request for room id %s \n", resultRequest[1])
 
+		// randomize agents order
+		rand.Seed(time.Now().UnixNano())
+		rand.Shuffle(len(allAgents), func(i, j int) {
+			allAgents[i], allAgents[j] = allAgents[j], allAgents[i]
+		})
+
 		// filter base on current_customer_count not more than max assign config
 		var agentID, agentIndex int
 		var isAgentExist bool
