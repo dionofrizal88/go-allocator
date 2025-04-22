@@ -39,7 +39,7 @@ func GetConfig() Configuration {
 	return Configuration{
 		AppEnv:        os.Getenv("APP_ENV"),
 		AppName:       os.Getenv("APP_NAME"),
-		AppPort:       os.Getenv("APP_PORT"),
+		AppPort:       os.Getenv("PORT"),
 		RedisHost:     os.Getenv("REDIS_HOST"),
 		RedisPassword: os.Getenv("REDIS_PASSWORD"),
 		RedisPort:     os.Getenv("REDIS_PORT"),
